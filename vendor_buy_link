@@ -1,0 +1,18 @@
+overhead 'Select your target chain'
+setvar! chain
+
+// Set the flag to 0, so we loop until a link is found in the backpack
+setvar! isLinkFound 0
+
+// Chain Link - 43206
+while isLinkFound == 0    
+    if findtype 43206 backpack as link
+        setvar isLinkFound 1        
+        dclick chain
+        pause 600
+        waitforgump 2785326818
+        gumpresponse 31
+        waitforgump 2785326818
+        gumpresponse 31
+    endif
+endwhile
