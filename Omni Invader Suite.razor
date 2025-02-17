@@ -1,0 +1,30 @@
+////SinCityForge 2025
+////Omni Invader Suite v1.0
+////--Simple Omni Gate--
+
+
+
+@clearsysmsg
+if not timerexists Omni
+    createtimer Omni
+    settimer Omni 4800
+endif
+
+while not dead
+////Script Overhead 
+    if timer Omni > 3800
+        overhead 'Searching For Omni Gate' 28
+        settimer Omni 0
+    endif
+
+////This section can be put into mostly any other gate scripts (line 21-27)
+    if findtype 27754 "ground" "any" 1 2 as "gate"
+        dclick "gate"
+        waitforgump 3773199800
+        gumpresponse 10
+        waitforgump 3773199800
+        gumpresponse 2
+    endif
+////This section can be put into mostly any other gate scripts (line 21-27)
+
+endwhile
