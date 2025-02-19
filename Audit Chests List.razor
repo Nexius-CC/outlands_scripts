@@ -1,0 +1,41 @@
+clearignore 
+
+removelist 'chestList'
+createlist 'chestList'
+    
+setvar! 'flag' 0
+
+while 'flag' == 0
+    if findtype 3648|2475|3649|3650|3651 ground as 'found'
+        pushlist 'chestList' 'found'
+        ignore 'found'
+    else
+        setvar! flag 1
+    endif
+endwhile
+
+if list 'chestList' == 0
+    overhead 'NO CHESTS FOUND LOL' 32
+    stop
+endif
+
+foreach 'potentialChest' in 'chestList'
+    getlabel 'potentialChest' 'chestLabel'
+    
+    if 'locked' in 'chestLabel'
+        overhead '[GOT ONE!]'
+        
+        overhead "chestLabel" 32 'potentialChest'
+        overhead "VVV" 32 'potentialChest'
+        overhead "VVV" 32 'potentialChest'
+    else
+        overhead 'UNLOCKED :(' 33 'potentialChest'       
+        overhead 'UNLOCKED :(' 33 'potentialChest'       
+        overhead 'UNLOCKED :(' 33 'potentialChest'       
+    endif
+ 
+    if 'potentialChest' == 0
+        overhead 'Done'
+        stop
+    endif
+endfor
